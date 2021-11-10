@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Employment Stats Analysis"
+author: "Zheyu Shen & Shiyu Wang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
