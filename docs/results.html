@@ -24,7 +24,7 @@
 <meta name="author" content="Zheyu Shen &amp; Shiyu Wang" />
 
 
-<meta name="date" content="2021-11-11" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -77,7 +77,15 @@
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#overview-of-overall-civilian-labor-force"><i class="fa fa-check"></i><b>5.1</b> Overview of Overall Civilian Labor Force</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#discrimination-in-employment"><i class="fa fa-check"></i><b>5.2</b> Discrimination in Employment</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#sex-discrimination"><i class="fa fa-check"></i><b>5.2.1</b> Sex Discrimination</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#race-discriminations"><i class="fa fa-check"></i><b>5.2.2</b> Race Discriminations</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -101,7 +109,37 @@
             <section class="normal" id="section-">
 <div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="overview-of-overall-civilian-labor-force" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Overview of Overall Civilian Labor Force</h2>
+<p>Before we dive into the questions about the factors influencing the employment, it would be better that we have an overview of overall civilian labor force in order to understand the data following more clearly.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="960" /></p>
+<p>Here, Civilian Noninstitutional Population is defined as persons 16 years of age and older residing in the 50 states and the District of Columbia, who are not inmates of institutions (e.g., penal and mental facilities, homes for the aged), and who are not on active duty in the Armed Forces. Civilian Labor Force is defined as all persons in the civilian noninstitutional population classified as either employed or unemployed. The detailed definition of person’s employment state can be found <a href="https://webapps.dol.gov/dolfaq/go-dol-faq.asp?faqid=111&amp;topicid=6">here</a>.</p>
+<p>As we can see, Civilian Noninstitutional Population keeps increasing over time, as same as Civilian Labor Force and Civilian Labor Force Employed.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="960" /></p>
+<p>The percentage here is calculated by dividing population of Civilian Labor Force and Civilian Labor Force Employed with Civilian Noninstitutional Population. The first statistic also can be referred as Labor Force Participation Rate.</p>
+<p>Both lines of percentage show a similar pattern. Despite of the increasing trend in overall population, the percentage of Civilian Labor Force and Civilian Labor Force Employed reach peak at 2000 and then decreased.</p>
+<p>A detailed analysis of Labor Force Participation Rate can be find <a href="https://www.investopedia.com/terms/p/participationrate.asp">here</a>, which is not the topic we tend to discuss here. It should be noticed that Labor Force Participation Rate is influenced by social, demographic, and economic trends. Therefore, it’s complicated to explain the change of this statistic over time.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<p>The Unemployment Rate is defined by the ratio of unemployed to the civilian labor force expressed as a percent [i.e., 100 times (unemployed/labor force)]. Therefore, the Unemployment Rate indicates what degree of people who try but can not find a job.</p>
+<p>As we can see, the Unemployment Rate changes rapidly over time and in 2020 it reached another peak again. Despite the constant change over time, the Unemployment Rate hovers around 6% in general</p>
+</div>
+<div id="discrimination-in-employment" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Discrimination in Employment</h2>
+<p>Now we want to find out whether it exists discrimination in employment in different industries in recent period.</p>
+<div id="sex-discrimination" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Sex Discrimination</h3>
+<p>First we examine the sex discrimination.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="960" /></p>
+<p>From a whole review, we can see that women significantly had less Civilian Labor Force Employed Percent of population.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="960" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
+</div>
+<div id="race-discriminations" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Race Discriminations</h3>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
 
+</div>
+</div>
 </div>
             </section>
 

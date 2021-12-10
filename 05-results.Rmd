@@ -1,1 +1,115 @@
+```{r, echo=FALSE}
+library(readxl)
+library(tidyverse)
+library(patchwork)
+```
+
 # Results
+
+## Overview of Overall Civilian Labor Force
+
+Before we dive into the questions about the factors influencing the employment, it would be better that we have an overview of overall civilian labor force in order to understand the data following more clearly.
+
+```{r, echo=FALSE, fig.width=10}
+overall_workforce_change <- read_excel("clean_data/overall_workforce_change.xlsx")
+
+g1 <- ggplot(overall_workforce_change, aes(x = Year)) +
+  geom_line(aes(y = `Civilian noninstitutional population`, color="Civilian Noninstitutional Population")) +
+  geom_line(aes(y = `Civilian labor force_Total`, color="Civilian Labor Force")) +
+  geom_line(aes(y = `Civilian labor force_Employed_Total`, color="Civilian Labor Force Employed")) +
+  geom_line(aes(y = `Civilian labor force_Unemployed_Number`, color="Civilian Labor Force Unemployed")) +
+  ggtitle("Civilian Noninstitutional Population and Labor Force") +
+  labs (x = "Year", y = "Thousands of Persons")
+g1
+```
+
+Here, Civilian Noninstitutional Population is defined as persons 16 years of age and older residing in the 50 states and the District of Columbia, who are not inmates of institutions (e.g., penal and mental facilities, homes for the aged), and who are not on active duty in the Armed Forces. Civilian Labor Force is defined as all persons in the civilian noninstitutional population classified as either employed or unemployed. The detailed definition of person's employment state can be found [here](https://webapps.dol.gov/dolfaq/go-dol-faq.asp?faqid=111&topicid=6).
+
+As we can see, Civilian Noninstitutional Population keeps increasing over time, as same as Civilian Labor Force and Civilian Labor Force Employed.
+
+```{r, echo=FALSE, fig.width=10}
+g2 <- ggplot(overall_workforce_change, aes(x = Year)) +
+  geom_line(aes(y = `Civilian labor force_Percent of population`, color="Civilian Labor Force")) +
+  geom_line(aes(y = `Civilian labor force_Employed_Percent of population`, color="Civilian Labor Force Employed")) +
+  geom_smooth(aes(y = `Civilian labor force_Percent of population`)) +
+  geom_smooth(aes(y = `Civilian labor force_Employed_Percent of population`)) +
+  ggtitle("Civilian Labor Force Percentage") +
+  labs (x = "Year", y = "Percent")
+g2
+```
+
+The percentage here is calculated by dividing population of Civilian Labor Force and Civilian Labor Force Employed with Civilian Noninstitutional Population. The first statistic also can be referred as Labor Force Participation Rate.
+
+Both lines of percentage show a similar pattern. Despite of the increasing trend in overall population, the percentage of Civilian Labor Force and Civilian Labor Force Employed reach peak at 2000 and then decreased.
+
+A detailed analysis of Labor Force Participation Rate can be find [here](https://www.investopedia.com/terms/p/participationrate.asp), which is not the topic we tend to discuss here. It should be noticed that Labor Force Participation Rate is influenced by social, demographic, and economic trends. Therefore, it's complicated to explain the change of this statistic over time.
+
+```{r, echo=FALSE, fig.width=10}
+g3 <- ggplot(overall_workforce_change, aes(x = Year, y = `Civilian labor force_Unemployed_Percent of labor force`)) +
+  geom_line() +
+  geom_smooth() +
+  ggtitle("Unemployed Rate") +
+  labs (x = "Year", y = "Unemployed Rate")
+g3
+```
+
+The Unemployment Rate is defined by the ratio of unemployed to the civilian labor force expressed as a percent [i.e., 100 times (unemployed/labor force)]. Therefore, the Unemployment Rate indicates what degree of people who try but can not find a job.
+
+As we can see, the Unemployment Rate changes rapidly over time and in 2020 it reached another peak again. Despite the constant change over time, the Unemployment Rate hovers around 6% in general
+
+## Discrimination in Employment
+
+Now we want to find out whether it exists discrimination in employment in different industries in recent period.
+
+### Sex Discrimination
+
+First we examine the sex discrimination. 
+
+```{r, echo=FALSE, fig.width=10}
+men_vs_women_over_20_years <- read_excel("clean_data/question_01/men_vs_women_over_20_years.xlsx")
+X2020 <- read_excel("clean_data/question_01/occupation_sex_race/detailed/2020.xlsx")
+
+g4 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Employed_Percent_of_population, color = Group)) +
+  geom_line() +
+  ggtitle("Civilian Labor Force Employed Percent of Population") +
+  labs (x = "Year", y = "Civilian Labor Force Employed Percent of Population")
+g4
+```
+
+From a whole review, we can see that women significantly had less Civilian Labor Force Employed Percent of population.
+
+```{r, echo=FALSE, fig.width=10}
+g5 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Unemployed_Percent_of_labor_force, color = Group)) +
+  geom_line() +
+  ggtitle("Unemployed Rate") +
+  labs (x = "Year", y = "Unemployed Rate")
+g5
+```
+
+```{r, echo=FALSE, fig.width=10, fig.height=10}
+rX2020 <-  X2020 %>% 
+  filter(`Total Employed` > 1000) %>%
+  arrange(desc(`Percent of total employed_women`))
+g6 <- ggplot(rX2020, aes(x = fct_reorder(Occupation, `Percent of total employed_women`), y = `Percent of total employed_women`)) +
+  geom_point() +
+  ggtitle("Percent of Total Employed (Total Employed Population above 1MM)") +
+  labs (x = "Occupation", y = "Percent of Total Employed") +
+  coord_flip()
+g6
+```
+
+### Race Discriminations
+```{r, echo=FALSE, fig.width=10, fig.height=10}
+r2X2020 <-  X2020 %>% 
+  filter(`Total Employed` > 1000) %>%
+  arrange(desc(`Percent of total employed_Asian`))
+g6 <- ggplot(rX2020, aes(x = fct_reorder(Occupation, `Percent of total employed_Asian`))) +
+  geom_point(aes(y = `Percent of total employed_Asian`, color="Asian")) +
+  geom_point(aes(y = `Percent of total employed_White`, color="White")) +
+  geom_point(aes(y = `Percent of total employed_Black or African American`, color="Black")) +
+  geom_point(aes(y = `Percent of total employed_Hispanic or Latino`, color="Hispanic or Latino")) +
+  ggtitle("Percent of Total Employed (Total Employed Population above 1MM)") +
+  labs (x = "Occupation", y = "Percent of Total Employed") +
+  coord_flip()
+g6
+```
