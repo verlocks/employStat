@@ -3,9 +3,10 @@ data-sources
 data-transformation
 missing-values
 results
-overview-of-overall-civilian-labor-force
+overview-of-employment-statistic
 discrimination-in-employment
 sex-discrimination
-race-discriminations
+race-discrimination
+change-of-employment-situation
 interactive-component
 conclusion

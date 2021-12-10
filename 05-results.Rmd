@@ -6,7 +6,7 @@ library(patchwork)
 
 # Results
 
-## Overview of Overall Civilian Labor Force
+## Overview of Employment Statistic
 
 Before we dive into the questions about the factors influencing the employment, it would be better that we have an overview of overall civilian labor force in order to understand the data following more clearly.
 
@@ -55,7 +55,7 @@ g3
 
 The Unemployment Rate is defined by the ratio of unemployed to the civilian labor force expressed as a percent [i.e., 100 times (unemployed/labor force)]. Therefore, the Unemployment Rate indicates what degree of people who try but can not find a job.
 
-As we can see, the Unemployment Rate changes rapidly over time and in 2020 it reached another peak again. Despite the constant change over time, the Unemployment Rate hovers around 6% in general
+As we can see, the Unemployment Rate changes rapidly over time and in 2020 it reached another peak again. Despite the constant change over time, the Unemployment Rate hovers around 6% in general.
 
 ## Discrimination in Employment
 
@@ -65,51 +65,95 @@ Now we want to find out whether it exists discrimination in employment in differ
 
 First we examine the sex discrimination. 
 
-```{r, echo=FALSE, fig.width=10}
+```{r, echo=FALSE, fig.width=10, fig.height = 12}
 men_vs_women_over_20_years <- read_excel("clean_data/question_01/men_vs_women_over_20_years.xlsx")
 X2020 <- read_excel("clean_data/question_01/occupation_sex_race/detailed/2020.xlsx")
 
 g4 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Employed_Percent_of_population, color = Group)) +
   geom_line() +
   ggtitle("Civilian Labor Force Employed Percent of Population") +
-  labs (x = "Year", y = "Civilian Labor Force Employed Percent of Population")
-g4
-```
-
-From a whole review, we can see that women significantly had less Civilian Labor Force Employed Percent of population.
-
-```{r, echo=FALSE, fig.width=10}
-g5 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Unemployed_Percent_of_labor_force, color = Group)) +
+  labs (x = "Year", y = "Percent")
+g4_1 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Percent_of_population, color = Group)) +
+  geom_line() +
+  ggtitle("Civilian Labor Force Percent of Population") +
+  labs (x = "Year", y = "Percent")
+g4_2 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_noninstitutional_population, color = Group)) +
+  geom_line() +
+  ggtitle("Civilian Noninstitutional Population") +
+  labs (x = "Year", y = "Thousands of Persons")
+g4_3 <- ggplot(men_vs_women_over_20_years, aes(x = Year, y = Civilian_labor_force_Unemployed_Percent_of_labor_force, color = Group)) +
   geom_line() +
   ggtitle("Unemployed Rate") +
   labs (x = "Year", y = "Unemployed Rate")
-g5
+g4_2 + g4_1 + g4 + g4_3 + plot_layout(ncol = 1)
 ```
+
+From a whole review, we can see that women significantly had less Civilian Labor Force Percent and Labor Force Employed Percent of population, despite the increasing of Civilian Noninstitutional Population over time. It indicates that women are likely not to have a job or try to pursue a job compared with men, which shows discrimination in the overall employment. The graph also shows that the gap in Civilian Labor Force Percent between men and women has been narrowed in recent years, indicating the situation may be changing to a good way.
+
+However, as the last graph suggests, the Unemployment Rate for men and women shows a very similar pattern. Actually, the Unemployment Rate for women always shows a little bit less than men. This shows that it's not more difficult for women to find a job if they want to in the overall picture of employment.
+
+Next let's try to examine the sex discrimination in different occupation.
 
 ```{r, echo=FALSE, fig.width=10, fig.height=10}
 rX2020 <-  X2020 %>% 
   filter(`Total Employed` > 1000) %>%
   arrange(desc(`Percent of total employed_women`))
-g6 <- ggplot(rX2020, aes(x = fct_reorder(Occupation, `Percent of total employed_women`), y = `Percent of total employed_women`)) +
-  geom_point() +
-  ggtitle("Percent of Total Employed (Total Employed Population above 1MM)") +
-  labs (x = "Occupation", y = "Percent of Total Employed") +
+g5 <- ggplot(rX2020, aes(x=fct_reorder(Occupation, `Percent of total employed_women`))) +
+  geom_bar(aes(y=`Total Employed`), stat="identity", size=.1, color="black", alpha=.4) + 
+  geom_point(aes(y=`Percent of total employed_women`/0.003), stat="identity", color="blue") +
+  scale_y_continuous(
+    # Features of the first axis
+    name = "Thousands of Persons",
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*0.003, name="Percent")
+  ) + 
+  ggtitle("Percent of Total Employed Women (Sorted by Percent)") +
+  xlab("Occupation") +
   coord_flip()
-g6
+g5
 ```
 
-### Race Discriminations
+Here we only display the occupations which have total employed population over 1MM, due to the large number of occupations. Data was collected in 2020, which shows the recent state of total employee and percent of women employee.
+
+From the graph we can find that there is a strong sex preference in a lot of occupations. For example, secretary and administrative assistant have a very strong tendency to women, which have over 90% of women employee. While in occupations related to construction, the percent of women employee is pretty low.
+
+Some discrimination in the graph may be explained reasonably. For example, construction laborers has a strong preference to men because the work requires strong physical labor and apparently it fits to men physically. Occupation of elementary and middle school teachers has a strong tendency to women, which may be resulted from the social common sense that women are more patient, considerate and obviously better at looking after children. However, such explains also indicate that the discrimination towards sex has deeply rooted at the culture and social common sense, which tell people what men should do and women should do.
+
+Besides, there are some occupations with discrimination towards sex, which can not be explained easily, such as software developers, computer and mathematical occupations, which have a tendency to men; bookkeeping, accounting and auditing clerks have a strong tendency to women.
+
+### Race Discrimination
+
+Now we focus on the discrimination towards races.
+
 ```{r, echo=FALSE, fig.width=10, fig.height=10}
 r2X2020 <-  X2020 %>% 
   filter(`Total Employed` > 1000) %>%
   arrange(desc(`Percent of total employed_Asian`))
 g6 <- ggplot(rX2020, aes(x = fct_reorder(Occupation, `Percent of total employed_Asian`))) +
-  geom_point(aes(y = `Percent of total employed_Asian`, color="Asian")) +
-  geom_point(aes(y = `Percent of total employed_White`, color="White")) +
-  geom_point(aes(y = `Percent of total employed_Black or African American`, color="Black")) +
-  geom_point(aes(y = `Percent of total employed_Hispanic or Latino`, color="Hispanic or Latino")) +
-  ggtitle("Percent of Total Employed (Total Employed Population above 1MM)") +
+  geom_bar(aes(y=`Total Employed`), stat="identity", size=.1, alpha=.3) + 
+  geom_point(aes(y = `Percent of total employed_Asian`/0.003, color="Asian")) +
+  geom_point(aes(y = `Percent of total employed_White`/0.003, color="White")) +
+  geom_point(aes(y = `Percent of total employed_Black or African American`/0.003, color="Black")) +
+  geom_point(aes(y = `Percent of total employed_Hispanic or Latino`/0.003, color="Hispanic or Latino")) +
+  scale_y_continuous(
+    # Features of the first axis
+    name = "Thousands of Persons",
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*0.003, name="Percent")
+  ) + 
+  ggtitle("Percent of Total Employed of Race (Sorted by Asian Percent)") +
   labs (x = "Occupation", y = "Percent of Total Employed") +
   coord_flip()
 g6
 ```
+
+Again we only display the occupations which have total employed population over 1MM, due to the large number of occupations. Data was collected in 2020, which shows the recent state of total women employee and percent of employee of different races.
+
+We can find out that there is discrimination in different occupations, and the degree of it varies according to the occupation. Occupations related to computer science have a strong tendency to Asian compared with other occupations. If we read the graph carefully, we can find that Asian tend to have occupations with higher requirements of professional knowledge, especially related to field of science, engineering and finance.
+
+We can also observe that percent of Asian employee has a negative correlation with percent of White and Hispanic or Latino employee, but doesn't seem to have a correlation with percent of Black or African American employee.
+
+This phenomenon can be explained by saying that in the recent decades many Asian come to the U.S. to pursue a Master or PHD degree, who tend to stay in the U.S. and continue their career. Still, the discrimination exists.
+
+## Change of Employment Situation
+
