@@ -107,7 +107,7 @@ g5 <- ggplot(rX2020, aes(x=fct_reorder(Occupation, `Percent of total employed_wo
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*0.003, name="Percent")
   ) + 
-  ggtitle("Percent of Total Employed Women (Sorted by Percent)") +
+  ggtitle("Total Employed and Women Percent (Sorted by Percent)") +
   xlab("Occupation") +
   coord_flip()
 g5
@@ -141,13 +141,13 @@ g6 <- ggplot(rX2020, aes(x = fct_reorder(Occupation, `Percent of total employed_
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*0.003, name="Percent")
   ) + 
-  ggtitle("Percent of Total Employed of Race (Sorted by Asian Percent)") +
+  ggtitle("Total Employed and Races Percent (Sorted by Asian Percent)") +
   labs (x = "Occupation", y = "Percent of Total Employed") +
   coord_flip()
 g6
 ```
 
-Again we only display the occupations which have total employed population over 1MM, due to the large number of occupations. Data was collected in 2020, which shows the recent state of total women employee and percent of employee of different races.
+Again we only display the occupations which have total employed population over 1MM, due to the large number of occupations. Data was collected in 2020, which shows the recent state of total employee and percent of employee of different races.
 
 We can find out that there is discrimination in different occupations, and the degree of it varies according to the occupation. Occupations related to computer science have a strong tendency to Asian compared with other occupations. If we read the graph carefully, we can find that Asian tend to have occupations with higher requirements of professional knowledge, especially related to field of science, engineering and finance.
 
@@ -157,3 +157,66 @@ This phenomenon can be explained by saying that in the recent decades many Asian
 
 ## Change of Employment Situation
 
+Now we want to answer a question: How does the employment situation change in the recent years? Is there any improvement about employment in different industries?
+
+We can answer the first question according to the graph at first part. Civilian Noninstitutional Population keeps increasing over time, while the Labor Force Participation Rate reached peak at 2000 and then kept decreasing until now. The Unemployment Rate changes rapidly over time and in 2020 it reached another peak again. Despite of the constant change over time, the Unemployment Rate hovers around 6% in general.
+
+The conclusions above suggest that on the whole, the employment situation doesn't improve, and may change rapidly due to external factors, such as COVID-19 and Great Recession.
+
+Now we want to examine the employment situation in different industries in recent years.
+
+```{r, echo=FALSE, fig.width=15, fig.height=10}
+Total_unemployed_number <- read_excel("clean_data/question_02/Total_unemployed_number.xlsx")
+Unemployment_rate_sex_occupation_ <- read_excel("clean_data/question_02/Unemployment_rate(sex_occupation).xlsx")
+
+df1 <- Total_unemployed_number %>%
+  pivot_longer(-c(Occupation, Group), names_to="Year", values_to="Population")
+df1$Occupation <- substr(df1$Occupation, 1, nchar(df1$Occupation)-12)
+ggplot(df1, aes(x=Year, y=Population, group=1, color="Red")) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  facet_wrap( ~ Occupation, scale = 'free', ncol=4) +
+  theme_bw() +
+  labs(title = "Total Unemployment Population in 2016-2020", y = "Thousands of Persons") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+
+```
+
+The figure above displays the total unemployed population in recent 5 years in different occupations. Although different occupations have different degree of population, the trend looks consistent.
+
+We can see that almost all occupations share a same pattern: the unemployed population decrease slowly from 2016 to 2019, and then rapidly increase in 2020. Occupation about arming, fishing and forestry seems to be an exception, which increased a little in 2019 but decreased in 2020.
+
+The reason behind rapid increasing in 2020 is well known to everyone: COVID-19. It's good to see that before 2020 the unemployment population have an overall deceasing trend in most occupations, which suggests a good trend in the employment situation. 
+
+```{r, echo=FALSE, fig.width=15, fig.height=10}
+df2 <- Unemployment_rate_sex_occupation_ %>%
+  pivot_longer(-c(Occupation, Group))
+
+df2$Year <- substr(df2$name, 1, 4)
+df2$Sex <- substr(df2$name, 6, nchar(df2$name))
+df2 <- select(df2, -name)
+
+df2 <- df2 %>%
+  pivot_wider(names_from=Sex, values_from=value)
+
+ggplot(df2, aes(x=Year, group=1))+
+  geom_line(aes(y=Total, color="Total"), size = 1) +
+  geom_point(aes(y=Total, color="Total"), size = 2) +
+  geom_line(aes(y=Men, color="Men"), size = 1) +
+  geom_point(aes(y=Men, color="Men"), size = 2) +
+  geom_line(aes(y=Women, color="Women"), size = 1) +
+  geom_point(aes(y=Women, color="Women"), size = 2) +
+  facet_wrap( ~ Occupation, scale = 'free', ncol=4) +
+  theme_bw() +
+  labs(title = "Unemployment Rate in 2016-2020", y = "Percent") +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = .5))
+
+```
+
+The graph above display the Unemployed Rate of total, men and women.
+
+The trend here is similar with the previous graph. Since we use the Unemployment Rate, we can now compare the employment situation between different occupations. For example, we can find that food preparation and serving related occupation suffered most in 2020 due to COVID-19 and people tend to stay at home instead of eating outside at restaurant. 
+
+Besides, we can not find an obvious relation between Unemployment Rate of men and women, except they share a similar pattern due to external factors. According to the graph, the difference varies between different occupations.
