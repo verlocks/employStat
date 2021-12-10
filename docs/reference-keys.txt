@@ -3,12 +3,9 @@ data-sources
 data-transformation
 missing-values
 results
-interactive-component
-conclusion
-overall-civilian-labor-force
 overview-of-overall-civilian-labor-force
-discriminations-in-employment
-sex-discriminations
-race-discriminations
 discrimination-in-employment
 sex-discrimination
+race-discriminations
+interactive-component
+conclusion
