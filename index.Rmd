@@ -7,3 +7,12 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+The topic we choose is about employment situation in the United States. We aim to give some insights to the others by analyzing the past several year's data from the U.S. Bureau of labor statistic because employment would be an essential topic for the most people, especially for the young people, who are more likely to look for a position in a company instead of have their own business. Thus, as relevant to many people, the topic which relates to many people, from our perspective, would be interesting and useful. Besides, since employment situation involves many aspects, and thus we'd like to analyze this topic from different angel to try to provide as many useful information as we can. 
+
+The questions we are interested in studying:
+
+1. In the recent period, does it exists discrimination in employment in different industries?
+
+2. Politicians often mention increasing employment rate and improve the public living conditions in their public speech. In the recent decades, does the employment situation truly improved?
+
+3. With the development of the society, does the requirement of each industries for their positions become more strict?

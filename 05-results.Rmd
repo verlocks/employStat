@@ -220,3 +220,332 @@ The graph above display the Unemployed Rate of total, men and women.
 The trend here is similar with the previous graph. Since we use the Unemployment Rate, we can now compare the employment situation between different occupations. For example, we can find that food preparation and serving related occupation suffered most in 2020 due to COVID-19 and people tend to stay at home instead of eating outside at restaurant. 
 
 Besides, we can not find an obvious relation between Unemployment Rate of men and women, except they share a similar pattern due to external factors. According to the graph, the difference varies between different occupations.
+
+## Stirctness of requirement in the industries and workers' type
+
+### The strcitness based on industries
+
+Background Knowledge:
+Certifications are issued by a non-governmental certification body and convey that an individual has the knowledge or skill to perform a specific job.
+
+A license is awarded by a government agency and conveys a legal authority to work in an occupation.
+
+Licenses are harder to gain compare to the certificates.
+
+Thus, to some extent, licenses are more strict than certificates.
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+
+df1 <- read_excel("data/clean_data/question_03/industry_license_or_certificate.xlsx", sheet = 1)
+df2 <- read_excel("data/clean_data/question_03/wokers_category_license_or_certificate.xlsx", sheet = 1)
+
+df_com <- 
+  df1 %>% 
+  pivot_longer(-c(Industry, Group))
+
+df_com$Year <- substr(df_com$name, 1, 4)
+df_com$Cat  <- substr(df_com$name, 6, nchar(df_com$name))
+
+df_com %>% 
+  filter(Cat == "with_a_certificate/license_total_percent") %>% 
+ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Industry, scale = "free")+
+  theme_bw()+
+  labs(title = "With a certificate/license total percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+Based on the graphs above shows with a certificate/license total percent calculates the percentage of workers who has a certificate or licenses in the overall employed people in the industry, and here is divided in to several specific industries:
+
+Based on the information, we divide the levels of the percentage(the strict level) as follows:
+low: below 20%
+medium: 20%-30%
+high: above 30%
+
+For Agriculture and related industries: 
+It suddenly drop from 2016 to 2017, from 13% to 11.9%, while rise form 2017 to 2018 and keep going down from 2018 to 2020, from 12.6% to 12.1%. But its overall percentage is low compare to the other industry, and in the recent years, its require for a license or certificate is decreasing
+
+For Construction industry: 
+It almost keep going done from 2016 to 2020, more specifically, from 2018 to 2020, it has almost no changes. It shows the requirement to enter this industry is becoming less strict, but its strict level is medium.
+
+For the Education and health services:
+It goes done from 2016 to 2017, and keep almost the same from 2017 to 2019 while in 2020, it rises, from 46% to 47.4%. This means in the recent years, this industry is becoming more strict, and at the same time, this industry has high level of strictness.
+
+For the Financial activities:
+It keeps going done from 2016 to 2019 and rises in 2020, which returns to the value in 2017. Thus, although having some fluctuation, this industry has the sign of keeping the similar strict level. The strict level of this industry is medium based on its values.
+
+For the Information industry:
+It keeps going done from 2016 to 2019, and rise from 2019 to 2020 but the value is lower than in 2016. It actually become less strict but has the sign of becoming more strict. Its level of strictness is low.
+
+For the Leisure and hospitality:
+It keeps going done form 2016 to 2020, thus it would be reasonably to predict it would keep going done in the future years. Its strict level is low.
+
+For the Manufacturing industry:
+It decrease from 2016 to 2017 but keep going up from 2017 to 2020 with little fluctuation, thus we predict it would keep rising in the future years. The strict level is low.
+
+For the Mining , quarrying, oil and gas extraction industry:
+It drops a lot from 2016 to 2017 but rises from 2017 to 2018 and keeps the same from 2018 to 2019 then drops from 2019 to 2020. Thus, it would be reasonable to assume it would goes done in the future. Its struct level is medium.
+
+For the Other services:
+It rises a bit from 2016 to 2017 and keep dropping fro 2017 to 2019 and rises from 2019 to 2020 in a relatively large amount. Thus we would predict it would become more strict in the near future. The level of strictness is medium.
+
+For the Professional and business services:
+It drops from 2016 to 2017 and keeps fluctuating from 2017 to 2020. In this sense, it will have the sign of fluctuating in the near future. The strict level is medium.
+
+For the Public administration industry:
+It rises a bit from 2016 to 2017 but drops more from 2017 to 2018 and has small changes from 2018 to 2020. From this pattern, it is reasonable to assume it would keep total percentage as around 30% in the near future which is a medium value.
+
+For the Retail Trade:
+It keeps dropping from 2016 to 2018 and rises from 2019 to 2020 with speed slowing done. Thus, It is reasonably predict it would rise a bit in the near future.
+
+For the Transportation and utilities:
+It goes done from 2016 to 2018, dropping with a large amount and rises a little from 2018 to 2019 and drops a little from 2019 to 2020. So it is more likely to keep in this data range in the near future, around 21% to 22%. It strict level is medium.
+
+For Wholesale trade:
+It keeps going done from 2016 to 2018 and rise a lot from 2018 to 2019 and then drops a lot from 2019 to 2020. Thus, it is reasonably to predict it would goes done in the near future. Its level of strictness is low.
+
+Based on the analysis:
+The LOW strict industries are: Agriculture and related industries; Information; Leisure and hospitality; Manufacturing; Retail trade; Wholesale trade
+
+The MEDIUM strict industries are: Construction; Financial activities; Mining, quarrying, and oil and gas extraction; Other Services; Professional and business services; Transportation and utilities; 
+
+The HIGH strict industries are: Education and health services; Public administration; 
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_com %>% 
+  filter(Cat == "with_a_certificate_no_license_percent") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Industry, scale = "free")+
+  theme_bw()+
+  labs(title = "With a certificate no license percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs is to show the percentage of having a certificate but no licenses:
+
+Almost each industries keeps the same pattern as the overall patterns for license and certificate except Education and health services(only having certificate goes done from 2019 to 2020), Leisure and hospitality(only having certificate has rising from 2017 to 2018 instead of keeping dropping) and Retail trade(only having certificate drops from 2019 to 2020)
+
+Besides, the percent of only having a certificate is low in all industries, all belows 5% which means more people would prefer actually to gain a license. 
+
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_com %>% 
+  filter(Cat == "with_a_license") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Industry, scale = "free")+
+  theme_bw()+
+  labs(title = "With a license percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs is to show the percentage of having a license(a people have a license may also have a certificate):
+
+All of the industries keep the same pattern which is reasonable since having a license weight more in overall having a certificate or license
+
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_com %>% 
+  filter(Cat == "without_a_license_percent") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Industry, scale = "free")+
+  theme_bw()+
+  labs(title = "Without a license percent percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs shows the employed people who have not a licenses:
+
+From the graphs and values, we could see that most people would not have license or certificate, the lowest industry, Education and health service, even above 50%. 
+
+Considering the dividence of work in each industry, having a high value of license or certificate seems not reasonable but the patterns we evaluate above could still offer useful information for people to choose industries to work in.
+
+
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_com %>% 
+  filter(Cat != "Total_Employed") %>% 
+ggplot(aes(Cat, value, fill = Cat))+
+  geom_boxplot(width = .5)+
+  geom_jitter(width = .1, alpha = .5)+
+  coord_flip()+
+  facet_wrap(~ Year)+
+  labs(x = "", y = "Employed Percent by Industry Category")+
+  theme_bw()+
+  theme(legend.position = "none")
+```
+The above graphs shows the distribution in the industries:
+
+After comparing the graphs in these 5 years, we could see that that difference is little. And we could conclude from here that, the minimum requirement of each industry would keep the similar in the near future, without big fluctuation. And when people consider to choose to work in some industry, considering the license or certificate percentage would be useful for planning the overall career goal. 
+
+### The strictness based on wokers' type
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+df_trans <- 
+  df2 %>% 
+  pivot_longer(-c(Workers_category, Group))
+
+df_trans$Year <- substr(df_trans$name, 1, 4)
+df_trans$Cat  <- substr(df_trans$name, 6, nchar(df_trans$name))
+
+df_trans %>% 
+  filter(Cat == "with_a_certificate/license_total_percent") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Workers_category, scale = "free")+
+  theme_bw()+
+  labs(title = "With a certificate/license total percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+From this point, we look at the data in a different angle, by looking at the workers categories, whether previate industries, Federal, State, Local or Self_employment:
+
+From the above graphs, keep using the levels for strictness defined above:
+The LOW strict level: None
+The MEDIUM strict level: Federal; Private Industries; Self-employed workers, unincorporated; 
+The HIGH strict level: Local; State
+
+Thus, the Local and state have high license or certificate requirement.
+
+Detailed analysis of the above graphs:
+
+For the Federal:
+It is in the medium level. It keeps going done from 2016 to 2020 except from 2018 to 2019 rising a little. Thus, we could predict it would keeps going done in the near future.
+
+For the Local: 
+It is in the high level. It drops from 2016 to 2018 while rising from 2018 to 2020, back to the similar level. Therefore, it has rising trend in the near future.
+
+For the State:
+It is in the high level. It drops from 2016 to 2019 and rise relatively large from 2019 to 2020. Thus, it has the rising trend in the near future.
+
+For the Private industries:
+It is in the medium level. It drops from 2016 to 2018 and rises from 2018 to 2020, even exceed the values in 2016. Therefore, it is reasonable to predict it would rise in the near future.
+
+For the Self_employed workers, unincorporated:
+It is in the medium level. It drops a lot from 2016 to 2017 while rises a bit in from 2017 to 2018. However, it drops again from 2018 to 2019 but rises a lot from 2019 to 2020, back to the similar values in 2016. Thues, it is reasonable to predict it would rise in the near future.
+
+Based on the analysis above, the government jobs, federal, state and local would be more strict. Besides, four out of five has the pattern of rising beginning either in 2018 or 2019. Thus, it would be reasonable to expect rising in local , private insutries, self-employed and state. 
+
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+df_trans %>% 
+  filter(Cat == "with_a_certificate_no_license_percent") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Workers_category   , scale = "free")+
+  theme_bw()+
+  labs(title = "With a certificate no license percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs shows the worker category with a certificate but no license:
+
+Most of them have the similar pattern except the self-employment workers which rises at first then drop and then rise instead of drop, keep the same and rise.
+
+And from these graphs, we could also see that the percentage of only have a certificate without a license is relatively low which could indicate that prople would prefer a license or a license would mainly useful but a certificate is not that useful
+
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+df_trans %>% 
+  filter(Cat == "with_a_license") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Workers_category   , scale = "free")+
+  theme_bw()+
+  labs(title = "With a license percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs shows the percentage of having a license, but these people may also have a certificate:
+
+All of these five have the similar pattern as the overall percentage graphs, which also indicates that having a license is dominent in having a license or certificate.
+
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+df_trans %>% 
+  filter(Cat == "without_a_license_percent") %>% 
+  ggplot(aes(Year, value, group = Cat, color = Cat))+
+  geom_line(size = 1)+
+  geom_point(size = 2)+
+  facet_wrap( ~ Workers_category   , scale = "free")+
+  theme_bw()+
+  labs(title = "Without a license percent percent in 2016-2020", y = "Percent (%)")+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = .5))
+```
+The above graphs shoes the percentage of not having a license or certificate:
+
+From these graphs we could also see that the percentage of not having a license or certificate is still large, which is consistent with the distribution of workers in each industry.
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_trans %>% 
+  filter(Cat != "Total_Employed") %>% 
+  ggplot(aes(Cat, value, fill = Cat))+
+  geom_boxplot(width = .5)+
+  geom_jitter(width = .1, alpha = .5)+
+  coord_flip()+
+  facet_wrap(~ Year)+
+  labs(x = "", y = "Employed Percent by Industry Category")+
+  theme_bw()+
+  theme(legend.position = "none")
+```
+The above graphs shows the distribution of the workers' categories:
+
+From these graphs, from 2016 to 2020, all keep the similar pattern, which could tell us that the requirment of license or certificate is not an accident and would keep the similar in the near future
+
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+library(inlmisc)
+color <- GetColors(scheme = "sunset", 10)
+
+
+df_com %>% 
+  filter(Cat != "Total_Employed") %>% 
+  mutate(short = substr(Industry, 1, 4)) %>% 
+  ggplot(aes(short, Cat, fill = value)) +
+  geom_tile()+
+  scale_fill_gradientn(colors = color, name = "Percent")+
+  coord_cartesian(expand = F)+
+  facet_wrap(~ Year)+
+  labs(x = "Industry", y = "")+
+  theme(legend.position = c(.8, .2),
+        legend.direction = "horizontal",
+        axis.text.x  = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+The above graphs give a more fancy way to show the data of percentage of license or certificate in each industry, the darker red it is means more percentage, could be over 75%, the darker blue it is means less percentage, could be less than 25%
+
+
+```{r, echo=FALSE, fig.width=12, fig.height=8}
+df_trans %>% 
+  filter(Cat != "Total_Employed") %>% 
+  mutate(short = substr(Workers_category, 1, 4)) %>% 
+  ggplot(aes(short, Cat, fill = value)) +
+  geom_tile()+
+  scale_fill_gradientn(colors = color, name = "Percent")+
+  coord_cartesian(expand = F)+
+  facet_wrap(~ Year)+
+  labs(x = "Workers category", y = "")+
+  theme(legend.position = c(.8, .2),
+        # legend.direction = "horizontal",
+        axis.text.x  = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+Also the above graphs give a more fancy way to show the percentage of license or certificate based on the workers' category, the darker the red is means more percentage, the darker the blue is means less percentage.
+
+
+Conclusion:
+
+Based on the analysis above, some industries would become more strict in the near future based on their current level of strictness: Education and health services; Manufacturing; Other services; Retail Trade; and the government related work categories would expect to become more strict.
