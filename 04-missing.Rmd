@@ -1,6 +1,6 @@
 # Missing values
 
-The files of files containing the missing values has been saved to an additional missing_data file to analyze missing patterns in this part. The code is included in the same file as in the [data transformation file](data/data_cleaning.ipynb) since we use python to do the data transformation and data cleaning part, having another file again import and export the files would be a waste of time.
+The files of files containing the missing values has been saved to an additional missing_data file to analyze missing patterns in this part. The code is included in the same file as in the [data transformation file](https://github.com/verlocks/employStat/blob/main/data/data_cleaning.ipynb) since we use python to do the data transformation and data cleaning part, having another file again import and export the files would be a waste of time.
 
 The Missing Values Pattern:
 (Since the headers for our data is longer then usual, we remove the x labels for the above bar chart for artistic)
