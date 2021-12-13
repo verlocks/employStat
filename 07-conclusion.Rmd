@@ -6,6 +6,8 @@ From the data we have, we may have a clue that in some industries the sex discri
 
 Besides, the employment statistic is highly influenced by external factors. For example, the impact of COVID-19 resulted in the rapid increasing of unemployment of almost all industries. With such factors, it's difficult to answer whether the employment condition has been improved. The data we have only illustrates the realty, but lacks the ability to have a deep and thorough analyze of it.
 
+In addition, when analyzing the strictness of requirements of each industries, they do not have a long term signal of changes like keep increasing for all the recent five years and this may due to the politics change. And since different licenses have different difficulty to get, and the difficulties of each license or certificate is not provided. Thus, analyzing the strictness of entering an industry has limitations
+
 ## Future Directions
 
 For discrimination problem, we could further use data before 2015 in different industries to find the change pattern in a longer term. Besides, it's valuable to dive into a single industries to analyze the current situation and reasons behind the data.

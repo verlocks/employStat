@@ -1,6 +1,6 @@
 # Data transformation
 
-[link to the data transformation file](data/data_cleaning.ipynb)
+[link to the data transformation file](https://github.com/verlocks/employStat/blob/main/data/data_cleaning.ipynb)
 
 Description:
 
