@@ -1,2 +1,17 @@
 # Conclusion
 
+## Limitations
+
+From the data we have, we may have a clue that in some industries the sex discrimination and race discrimination exist. However, it's hard to explain reasons for it, and find out the real employment condition for different gender and different race. If we want to have an insight into such questions, the data we have may not be enough.
+
+Besides, the employment statistic is highly influenced by external factors. For example, the impact of COVID-19 resulted in the rapid increasing of unemployment of almost all industries. With such factors, it's difficult to answer whether the employment condition has been improved. The data we have only illustrates the realty, but lacks the ability to have a deep and thorough analyze of it.
+
+## Future Directions
+
+For discrimination problem, we could further use data before 2015 in different industries to find the change pattern in a longer term. Besides, it's valuable to dive into a single industries to analyze the current situation and reasons behind the data.
+
+For the employment situation, it's better to combine data with external factors to have a better explain and understanding rather than simple number.
+
+## Lessons Learned
+
+To illustrate the data, visualization is a really powerful tool, which can compress a lot of information into a graph and can be understand intuitively. Therefore, it's really important to consider the readers' point of view. After all, the aim of producing a graph is to make people understand data in an easy way, rather than make it more difficult.

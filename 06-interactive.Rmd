@@ -1,3 +1,7 @@
 # Interactive component
 
+In this part we display the graph of total employment and percentage of women employee of different occupations. The similar graph has been showed previously. However, due to the limitation, it's not wise to display all the occupations in a graph, since it's hard for readers to see the exact number from the graph and it's not proper to create a graph too long. Therefore, we instead use an interactive way to illustrate it.
 
+Readers can sort element in proper way and find the exact number by put the mouse on the bars and dots. It's very interesting to see the gender composition of different occupations.
+
+<iframe src="interactive.html" width="765" height="5700"></iframe>
