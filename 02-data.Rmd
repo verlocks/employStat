@@ -2,7 +2,7 @@
 
 Shiyu Wang is the one who choose the data set for further analysis.
 
-To assure the correctness of the data sets, they are chosen from the U.S. Bureau of labor statistics. [dataset](https://www.bls.gov/cps/tables.htm#empstat) and all the data is downloaded as excel for further analysis.
+To assure the correctness of the data sets, they are chosen from the U.S. Bureau of labor statistics. [(link to dataset)](https://www.bls.gov/cps/tables.htm#empstat) and all the data is downloaded as excel for further analysis.
 
 At first, we decide which topic we would work on and several questions we may have, based on our point of view.
 
@@ -13,7 +13,7 @@ Then, looking through the data sets combined with our potential questions wanted
 To be more specific, the following offer the details about choosing the data set:
 
 ## General View: "Employment status of the civilian non-institutional population, 1950s to date" :
-[link](data/overall_workforce_change.xlsx)
+[link_to_this_file](data/overall_workforce_change.xlsx)
 
 since this data set would give us an overview of the employment status which would be beneficial for our whole analysis.
 
@@ -26,7 +26,7 @@ Issue: There is no issues in this data set.
 It is asking about "does it exists discrimination in employment in different industries?", the key point is discrimination which would involve gender, race, age etc. Thus, gathering the data in these topics would be essential.For this question our group gather the data set as follow:
 
 ### "Employment status of the civilian non-institutional population 16 years and over by sex, 1980s to date":
-[link](data/question_01/men_vs_women_over20years.xlsx)
+[link_to_this_file](data/question_01/men_vs_women_over20years.xlsx)
 
 Since gender is one of the points to analyze the discrimination, this data set gives us the employment status of men and women 1980s, and using this data set would be potential useful for our data analysis.
 
@@ -35,11 +35,11 @@ Variables: It has 11 variables and very similar to the general view of employmen
 Issue: There is no issues in this data set.
 
 ### "Employed persons by detailed occupation, sex, race, and Hispanic or Latino ethnicity":(from 2016 to 2020)
-[link_2016](data/question_01/occupation_sex_race/detailed/2016.xlsx)
-[link_2017](data/question_01/occupation_sex_race/detailed/2017.xlsx)
-[link_2018](data/question_01/occupation_sex_race/detailed/2018.xlsx)
-[link_2019](data/question_01/occupation_sex_race/detailed/2019.xlsx)
-[link_2020](data/question_01/occupation_sex_race/detailed/2020.xlsx)
+[link_to_2016](data/question_01/occupation_sex_race/detailed/2016.xlsx)
+[link_to_2017](data/question_01/occupation_sex_race/detailed/2017.xlsx)
+[link_to_2018](data/question_01/occupation_sex_race/detailed/2018.xlsx)
+[link_to_2019](data/question_01/occupation_sex_race/detailed/2019.xlsx)
+[link_to_2020](data/question_01/occupation_sex_race/detailed/2020.xlsx)
 
 Our group choose the data from 2016 to 2020 since the website gives same format of data in the same topic from 2016 to 2020. This data set gives the information about the race vs occupation, so it could be potentially useful for further analysis since it is highly possible in different industry, the discrimination would be different. Besides, race is also a key point of discrimination. And choosing 2016 to 2020 is because the recent 5 years data would be more valuable for us to do analysis and give insights to the others.
 
@@ -48,10 +48,10 @@ Variables: They all have 7 variables except in 2016 which looses white people in
 Issue: These files contain missing values.
 
 ### "Employed persons by occupation, race, Hispanic or Latino ethnicity, and sex":(from 2016 to 2020)
-[link_2016-2017](data/question_01/occupation_sex_race/general_compare/2016-2017.xlsx)
-[link_2017-2018](data/question_01/occupation_sex_race/general_compare/2017-2018.xlsx)
-[link_2018-2019](data/question_01/occupation_sex_race/general_compare/2018-2019.xlsx)
-[link_2019-2020](data/question_01/occupation_sex_race/general_compare/2019-2020.xlsx)
+[link_to_2016-2017](data/question_01/occupation_sex_race/general_compare/2016-2017.xlsx)
+[link_to_2017-2018](data/question_01/occupation_sex_race/general_compare/2017-2018.xlsx)
+[link_to_2018-2019](data/question_01/occupation_sex_race/general_compare/2018-2019.xlsx)
+[link_to_2019-2020](data/question_01/occupation_sex_race/general_compare/2019-2020.xlsx)
 
 These data set offers a more general version about occupation, gender and race, compared to the previous one. And it is also potentially valuable for our group for further analysis. 
 
@@ -60,11 +60,11 @@ Variables: They all have 7 variables including the occupation and race; Total fo
 Issue: There are no issues in these files.
 
 ### "Employment status of the civilian noninstitutional population by age, sex, and race":(from 2016 to 2020)
-[link_2016](data/question_01/sex_race_age/2016.xlsx)
-[link_2017](data/question_01/sex_race_age/2017.xlsx)
-[link_2018](data/question_01/sex_race_age/2018.xlsx)
-[link_2019](data/question_01/sex_race_age/2019.xlsx)
-[link_2020](data/question_01/sex_race_age/2020.xlsx)
+[link_to_2016](data/question_01/sex_race_age/2016.xlsx)
+[link_to_2017](data/question_01/sex_race_age/2017.xlsx)
+[link_to_2018](data/question_01/sex_race_age/2018.xlsx)
+[link_to_2019](data/question_01/sex_race_age/2019.xlsx)
+[link_to_2020](data/question_01/sex_race_age/2020.xlsx)
 
 These data sets offer the information about different age and different race in different ages, which could provide us another angel of viewing the employment status. Thus, these data sets could be highly potentially useful for the further analysis
 
@@ -77,10 +77,10 @@ Issues: There is some missing values in these files.
 It is asking about the whether the employment situation has truly improved. In another angel, analyzing the unemployment would give us the answer to this question since based on the news, from the politicians' words, unemployment rate will be improved based on his actions once he has been elected. However, whether they told the public the truth or not could only be verified based on the actual data.
 
 ### "Unemployed persons by occupation and sex"(from 2016 to 2020):
-[link_2016-2017](data/question_02/Unemployed_sex_occupation/2016-2017.xlsx)
-[link_2017-2018](data/question_02/Unemployed_sex_occupation/2017-2018.xlsx)
-[link_2018-2019](data/question_02/Unemployed_sex_occupation/2018-2019.xlsx)
-[link_2019-2020](data/question_02/Unemployed_sex_occupation/2019-2020.xlsx)
+[link_to_2016-2017](data/question_02/Unemployed_sex_occupation/2016-2017.xlsx)
+[link_to_2017-2018](data/question_02/Unemployed_sex_occupation/2017-2018.xlsx)
+[link_to_2018-2019](data/question_02/Unemployed_sex_occupation/2018-2019.xlsx)
+[link_to_2019-2020](data/question_02/Unemployed_sex_occupation/2019-2020.xlsx)
 
 These data sets offer the information about the unemployment rate based on gender and occupation which could offer us the insights about the unemployment status.
 
@@ -93,11 +93,11 @@ Issues: There are missing values in these data sets.
 The question is: as the development of the society is becoming better, does the requirement of each industries become more strict? To answer this question, how to define the requirements seems essential. From our point of view, the percentage of having a license or certificate is an appropriate indicator for this question. Therefore, gathering the following data is reasonable.
 
 ### "Certification and licensing status of the employed by industry and class of worker"(from 2016 to 2020):
-[link_2016](data/question_03/certification_and_license/2016.xlsx)
-[link_2017](data/question_03/certification_and_license/2017.xlsx)
-[link_2018](data/question_03/certification_and_license/2018.xlsx)
-[link_2019](data/question_03/certification_and_license/2019.xlsx)
-[link_2020](data/question_03/certification_and_license/2020.xlsx)
+[link_to_2016](data/question_03/certification_and_license/2016.xlsx)
+[link_to_2017](data/question_03/certification_and_license/2017.xlsx)
+[link_to_2018](data/question_03/certification_and_license/2018.xlsx)
+[link_to_2019](data/question_03/certification_and_license/2019.xlsx)
+[link_to_2020](data/question_03/certification_and_license/2020.xlsx)
 
 These data sets give two parts useful information and both of them will be useful for the further analysis. The first part gives information about holding certificate or license (whether have both or only one) based on the industry. The second part offers another angel that the license or certificate holding situation based on which type the people himself/herself is.
 
