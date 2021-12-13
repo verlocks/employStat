@@ -14,6 +14,8 @@ For discrimination problem, we could further use data before 2015 in different i
 
 For the employment situation, it's better to combine data with external factors to have a better explain and understanding rather than simple number.
 
+For the strictness of requirements of each industry, we could further gather data evaluated the hardness of getting the specific licenses or certificate in each industries, and analyze the data about the percentage of people get the specific license or certificate.
+
 ## Lessons Learned
 
 To illustrate the data, visualization is a really powerful tool, which can compress a lot of information into a graph and can be understand intuitively. Therefore, it's really important to consider the readers' point of view. After all, the aim of producing a graph is to make people understand data in an easy way, rather than make it more difficult.
